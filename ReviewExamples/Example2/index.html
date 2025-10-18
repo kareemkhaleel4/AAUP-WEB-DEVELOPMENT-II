@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Web Playground — HTML • CSS • JS</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:," />
+</head>
+<body>
+  <!-- Accessible skip link -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Top navigation with sticky behavior -->
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="#">
+        <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"></circle>
+        </svg>
+        Web Playground
+      </a>
+
+      <button id="theme-toggle" class="btn" type="button" aria-pressed="false" title="Toggle theme">
+        🌗 Theme
+      </button>
+
+      <form class="search" role="search">
+        <label class="visually-hidden" for="q">Search</label>
+        <input id="q" name="q" type="search" placeholder="Search components…" />
+      </form>
+    </nav>
+  </header>
+
+  <!-- Hero / Intro -->
+  <section class="hero container">
+    <div class="hero__content">
+      <h1><mark>Modern</mark> HTML, CSS & JavaScript</h1>
+      <p class="lead">
+        A compact playground demonstrating semantic HTML, responsive layout, CSS variables,
+        dark mode, animations, forms, and interactive components.
+      </p>
+      <div class="hero__actions">
+        <button class="btn btn-primary" data-open-dialog="#about-dialog">What’s inside?</button>
+        <a class="btn btn-ghost" href="#gallery">Jump to Gallery</a>
+      </div>
+      <ul class="hero__meta" aria-label="Project quick stats">
+        <li><strong>Version:</strong> <time datetime="2025-10-15">2025.10</time></li>
+        <li><strong>Status:</strong> <span class="status">Stable</span></li>
+        <li><strong>License:</strong> <abbr title="MIT License">MIT</abbr></li>
+      </ul>
+    </div>
+
+    <figure class="hero__figure">
+      <picture>
+        <source srcset="https://picsum.photos/600/400.webp" type="image/webp" />
+        <img src="https://picsum.photos/600/400" alt="Abstract code art" loading="lazy" />
+      </picture>
+      <figcaption>Responsive image via <code>&lt;picture&gt;</code></figcaption>
+    </figure>
+  </section>
+
+  <!-- Tabs (no framework) -->
+  <section class="tabs container" aria-label="Topics">
+    <div class="tablist" role="tablist" aria-label="Topic tabs">
+      <button class="tab is-active" role="tab" aria-selected="true" aria-controls="tab-html" id="tab-btn-html">HTML</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="tab-css" id="tab-btn-css">CSS</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="tab-js" id="tab-btn-js">JavaScript</button>
+    </div>
+
+    <article id="tab-html" class="tabpanel is-active" role="tabpanel" tabindex="0" aria-labelledby="tab-btn-html">
+      <h2>Semantic HTML</h2>
+      <p>Use landmarks (<code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;nav&gt;</code>, etc.), accessible names, and HTML5 elements.</p>
+
+      <details class="tip">
+        <summary>Show uncommon but useful tags</summary>
+        <ul class="grid grid-2">
+          <li><code>&lt;dialog&gt;</code> for modals</li>
+          <li><code>&lt;details&gt;/&lt;summary&gt;</code> for disclosures</li>
+          <li><code>&lt;meter&gt;</code> and <code>&lt;progress&gt;</code> for measurements</li>
+          <li><code>&lt;template&gt;</code> for cloning DOM fragments</li>
+        </ul>
+      </details>
+    </article>
+
+    <article id="tab-css" class="tabpanel" role="tabpanel" tabindex="0" aria-labelledby="tab-btn-css">
+      <h2>Modern CSS</h2>
+      <ul class="grid grid-3">
+        <li>Custom properties (variables)</li>
+        <li>Flexbox & CSS Grid</li>
+        <li><code>clamp()</code> fluid typography</li>
+        <li>Dark mode via <code>data-theme</code></li>
+        <li><code>:has()</code> for powerful selectors</li>
+        <li>Animations & <code>@media</code> queries</li>
+      </ul>
+      <p>We also demonstrate transitions, focus styles, and reduced-motion preferences.</p>
+    </article>
+
+    <article id="tab-js" class="tabpanel" role="tabpanel" tabindex="0" aria-labelledby="tab-btn-js">
+      <h2>Vanilla JavaScript</h2>
+      <p>Event delegation, localStorage, form validation, dynamic templates, and dialog control.</p>
+      <pre><code>// Tip: use dataset attributes for declarative JS hooks.</code></pre>
+    </article>
+  </section>
+
+  <main id="main" class="container flow">
+    <!-- Responsive Gallery (CSS Grid) + Filters -->
+    <section id="gallery" aria-labelledby="gallery-title">
+      <header class="section-header">
+        <h2 id="gallery-title">Component Gallery</h2>
+        <div class="controls">
+          <label>Filter:
+            <select id="filter">
+              <option value="all">All</option>
+              <option value="ui">UI</option>
+              <option value="data">Data</option>
+              <option value="media">Media</option>
+            </select>
+          </label>
+          <button class="btn" id="shuffle">Shuffle</button>
+        </div>
+      </header>
+
+      <div class="gallery" id="gallery-grid" data-empty-msg="No items match your filter.">
+        <!-- Template-driven cards will render here -->
+      </div>
+
+      <template id="card-tpl">
+        <article class="card" data-tag="">
+          <header class="card__header">
+            <h3 class="card__title"></h3>
+            <span class="badge" aria-label="Category"></span>
+          </header>
+          <figure class="card__media">
+            <img alt="" loading="lazy" />
+          </figure>
+          <div class="card__body">
+            <p class="card__text"></p>
+          </div>
+          <footer class="card__footer">
+            <button class="btn btn-primary" data-open-dialog="#preview-dialog">Preview</button>
+          </footer>
+        </article>
+      </template>
+    </section>
+
+    <!-- Data Table with sticky header + zebra + filter -->
+    <section aria-labelledby="tbl-title">
+      <header class="section-header">
+        <h2 id="tbl-title">Dataset (Table)</h2>
+        <input id="table-filter" placeholder="Type to filter rows…" aria-label="Filter table" />
+      </header>
+
+      <div class="table-wrap">
+        <table class="data">
+          <caption class="visually-hidden">Sample stats</caption>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Category</th>
+              <th>Score</th>
+              <th>Progress</th>
+            </tr>
+          </thead>
+          <tbody id="data-rows">
+            <!-- Rows are populated by JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Form with :has() validation styles -->
+    <section aria-labelledby="form-title">
+      <h2 id="form-title">Contact Form</h2>
+      <form id="contact-form" class="form">
+        <div class="form__row">
+          <label for="name">Name</label>
+          <input id="name" name="name" required minlength="2" />
+        </div>
+        <div class="form__row">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required />
+        </div>
+        <div class="form__row">
+          <label for="topic">Topic</label>
+          <select id="topic" name="topic" required>
+            <option value="">Select a topic…</option>
+            <option>UI</option>
+            <option>Data</option>
+            <option>Media</option>
+          </select>
+        </div>
+        <div class="form__row">
+          <label for="msg">Message</label>
+          <textarea id="msg" name="msg" rows="4" maxlength="300" required></textarea>
+          <div class="hint"><kbd>300</kbd> chars max</div>
+        </div>
+        <div class="form__row">
+          <label>Experience</label>
+          <meter min="0" max="10" low="3" high="7" optimum="9" value="6">6/10</meter>
+        </div>
+        <div class="form__actions">
+          <button class="btn btn-primary" type="submit">Send</button>
+          <button class="btn btn-ghost" type="reset">Reset</button>
+        </div>
+        <output id="form-output" role="status" aria-live="polite"></output>
+      </form>
+    </section>
+
+    <!-- Media + progress demo -->
+    <section aria-labelledby="media-title">
+      <h2 id="media-title">Media & Progress</h2>
+      <div class="media-row">
+        <video controls width="360" preload="metadata">
+          <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+          Your browser does not support video.
+        </video>
+        <div class="progress-wrap">
+          <label for="dl">Download progress</label>
+          <progress id="dl" value="0.4" max="1">40%</progress>
+        </div>
+        <canvas id="spark" width="360" height="120" aria-label="Canvas sparkline" role="img"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer with small print -->
+  <footer class="site-footer">
+    <div class="container">
+      <small>&copy; <span id="year"></span> Web Playground • <a href="#about" data-open-dialog="#about-dialog">About</a></small>
+    </div>
+  </footer>
+
+  <!-- About dialog -->
+  <dialog id="about-dialog" aria-labelledby="about-title">
+    <article class="dialog">
+      <header>
+        <h3 id="about-title">About This Playground</h3>
+      </header>
+      <p>
+        This page showcases semantic HTML, CSS custom properties, grid/flex layouts,
+        transitions/animations, <code>:has()</code> validation, and vanilla JS patterns.
+      </p>
+      <button class="btn" data-close-dialog>Close</button>
+    </article>
+  </dialog>
+
+  <!-- Preview dialog (re-used for cards) -->
+  <dialog id="preview-dialog" aria-labelledby="preview-title">
+    <article class="dialog">
+      <header>
+        <h3 id="preview-title">Preview</h3>
+      </header>
+      <div id="preview-content">Loading…</div>
+      <button class="btn" data-close-dialog>Close</button>
+    </article>
+  </dialog>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
