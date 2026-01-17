@@ -1,0 +1,453 @@
+/* ===============================
+   Design Tokens
+================================ */
+
+:root {
+  --primary: #0a66c2;
+  --primary-hover: #004182;
+
+  --bg-main: #f3f2ef;
+  --bg-card: #ffffff;
+
+  --border-light: #e0e0e0;
+  --border-soft: #ededed;
+
+  --text-main: #191919;
+  --text-muted: #6b6b6b;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
+}
+
+/* ===============================
+   Global
+================================ */
+
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.muted {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* ===============================
+   Navbar
+================================ */
+
+.navbar {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-soft);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 20px;
+  text-decoration: none;
+  color: var(--primary);
+}
+
+.nav-links a {
+  margin-right: 16px;
+  text-decoration: none;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.nav-links .active {
+  color: var(--primary);
+}
+
+.nav-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* ===============================
+   Buttons
+================================ */
+
+.btn {
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid #cfd7e3;
+}
+
+.btn-danger {
+  background: #d92b2b;
+  color: white;
+}
+
+.btn-delete {
+  background: transparent;
+  color: #d92b2b;
+  border: none;
+  font-size: 12px;
+  padding: 4px 6px;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  text-decoration: underline;
+}
+
+
+/* ===============================
+   Pages / Cards
+================================ */
+
+.page,
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ===============================
+   Landing
+================================ */
+
+.landing-hero {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 24px;
+}
+
+.landing h1 {
+  font-size: 42px;
+  line-height: 1.2;
+}
+
+.landing-actions {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.landing-card {
+  padding: 20px;
+}
+
+/* ===============================
+   Auth Pages
+================================ */
+
+.auth-page {
+  display: flex;
+  justify-content: center;
+  padding: 70px 16px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 380px;
+}
+
+.auth-card h2 {
+  margin-bottom: 8px;
+}
+
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.auth-card input {
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid #cfcfcf;
+  font-size: 14px;
+}
+
+/* ===============================
+   Feed
+================================ */
+
+.feed {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.create-post textarea {
+  width: 100%;
+  min-height: 90px;
+  padding: 12px;
+  resize: none;
+  border-radius: var(--radius-sm);
+  border: 1px solid #cfcfcf;
+}
+
+.post-header-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.post-images img {
+  width: 100%;
+  border-radius: var(--radius-sm);
+}
+
+/* ===============================
+   Comments
+================================ */
+
+.comments {
+  margin-top: 12px;
+}
+
+.comment {
+  padding: 10px 0;
+  border-top: 1px solid var(--border-soft);
+}
+
+.comment-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment-box input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid #cfcfcf;
+}
+
+/* ===============================
+   Responsive
+================================ */
+
+@media (max-width: 900px) {
+  .landing-hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ===============================
+   Auther Avatars
+================================ */
+.author {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatar-sm {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatar-xs {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+/* ===============================
+   Profile Page
+================================ */
+
+.profile-page {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.profile-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Header layout */
+
+.profile-header {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* Avatar */
+
+.profile-avatar-wrapper {
+  position: relative;
+  width: 120px;
+  flex-shrink: 0;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border-light);
+}
+
+.avatar-upload {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  background: rgba(0,0,0,0.75);
+  color: white;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* Main info */
+
+.profile-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile-main input {
+  border: none;
+  border-bottom: 1px solid var(--border-soft);
+  padding: 6px 4px;
+  font-size: 14px;
+}
+
+.profile-main input:focus {
+  outline: none;
+  border-bottom-color: var(--primary);
+}
+
+/* Name & headline */
+
+.profile-name {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.profile-headline {
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+.profile-location {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* Summary */
+
+.profile-card h3 {
+  margin: 0 0 10px;
+}
+
+.profile-summary {
+  width: 100%;
+  min-height: 120px;
+  resize: vertical;
+  padding: 12px;
+  font-size: 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
+}
+
+/* Actions */
+
+.profile-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ===============================
+   Responsive
+================================ */
+
+@media (max-width: 700px) {
+  .profile-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile-main {
+    align-items: center;
+  }
+
+  .profile-main input {
+    text-align: center;
+  }
+}
